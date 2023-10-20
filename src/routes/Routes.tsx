@@ -2,13 +2,14 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import { AppStack } from './AppStack'
 import { AuthStack } from './AuthStack'
+import { useAuthCrendentials } from '@services'
 
 export function Router() {
-  const authenticated = true
+  const { authCredentials } = useAuthCrendentials()
 
   return (
     <NavigationContainer>
-      {authenticated ? <AppStack /> : <AuthStack />}
+      {authCredentials ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   )
 }

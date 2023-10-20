@@ -10,8 +10,16 @@ import {
 
 import { loginSchema, LoginSchema } from './login-schema'
 import { AuthScreenProps } from '@routes'
+import { useAuthSignIn } from '@domain'
+import { useToastService } from '@services'
 
 export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
+  const { showToast } = useToastService()
+
+  const { signIn, isLoading } = useAuthSignIn({
+    onError: message => showToast({ message, type: 'error' })
+  })
+
   const { handleSubmit, control } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
@@ -22,7 +30,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
   })
 
   async function handleSubmitForm({ email, password }: LoginSchema) {
-    console.log({ email, password })
+    signIn({ email, password })
   }
 
   function handleGoSignUpScreen() {
@@ -82,6 +90,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
         preset='outline'
         mt='s12'
         onPress={handleGoSignUpScreen}
+        loading={isLoading}
       />
     </Screen>
   )
