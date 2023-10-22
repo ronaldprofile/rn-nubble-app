@@ -1,13 +1,9 @@
-import { create } from 'zustand'
 import { AuthCredentialsService } from './authCredentialsTypes'
+import { useAuthCredentialsContext } from './useAuthCredentialsContext'
+// import { useAuthCrendentialsZustand } from './useAuthCredentialsZustand'
 
 export function useAuthCrendentials(): AuthCredentialsService {
-  return useAuthCrendentialsZustand()
-}
+  return useAuthCredentialsContext()
 
-const useAuthCrendentialsZustand = create<AuthCredentialsService>(set => ({
-  isLoading: false,
-  authCredentials: null,
-  saveCredentials: async ac => set({ authCredentials: ac }),
-  removeCredentials: async () => set({ authCredentials: null })
-}))
+  // return useAuthCrendentialsZustand()
+}

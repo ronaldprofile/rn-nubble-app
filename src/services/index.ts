@@ -4,3 +4,8 @@ export * from './toast/useToast'
 
 export * from './authCredentials/authCredentialsTypes'
 export * from './authCredentials/useAuthCredentials'
+export { AuthCredentialsProvider } from './authCredentials/Providers/AuthCredentialsProvider'
+
+export * from './storage/storage'
+export * from './storage/implementations/MMKVStorage'
+export * from './storage/implementations/asyncStorage'

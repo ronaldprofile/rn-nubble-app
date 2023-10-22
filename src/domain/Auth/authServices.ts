@@ -28,7 +28,7 @@ function removeToken() {
   api.defaults.headers.common.Authorization = null
 }
 
-export const authServices = {
+export const authService = {
   signIn,
   signOut,
   updateToken,

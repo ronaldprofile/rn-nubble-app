@@ -5,22 +5,31 @@ import { theme } from './src/theme'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Router } from './src/routes/Routes'
 import { Toast } from '@components'
-import { ToastProvider } from '@services'
+import {
+  AuthCredentialsProvider,
+  MMKVStorage,
+  ToastProvider,
+  initializeImplementationStorage
+} from '@services'
+
+initializeImplementationStorage(MMKVStorage)
 
 const queryClient = new QueryClient()
 
 function App(): JSX.Element {
   return (
-    <QueryClientProvider client={queryClient}>
-      <SafeAreaProvider>
-        <ThemeProvider theme={theme}>
-          <ToastProvider>
-            <Router />
-            <Toast />
-          </ToastProvider>
-        </ThemeProvider>
-      </SafeAreaProvider>
-    </QueryClientProvider>
+    <AuthCredentialsProvider>
+      <QueryClientProvider client={queryClient}>
+        <SafeAreaProvider>
+          <ThemeProvider theme={theme}>
+            <ToastProvider>
+              <Router />
+              <Toast />
+            </ToastProvider>
+          </ThemeProvider>
+        </SafeAreaProvider>
+      </QueryClientProvider>
+    </AuthCredentialsProvider>
   )
 }
 

@@ -20,7 +20,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
     onError: message => showToast({ message, type: 'error' })
   })
 
-  const { handleSubmit, control } = useForm<LoginSchema>({
+  const { handleSubmit, control, formState } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
     defaultValues: {
@@ -79,10 +79,11 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
       </Text>
 
       <Button
-        // disabled={!formState.isValid}
+        disabled={!formState.isValid}
         onPress={handleSubmit(handleSubmitForm)}
         title='Entrar'
         mt='s48'
+        loading={isLoading}
       />
 
       <Button
@@ -90,7 +91,6 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
         preset='outline'
         mt='s12'
         onPress={handleGoSignUpScreen}
-        loading={isLoading}
       />
     </Screen>
   )
