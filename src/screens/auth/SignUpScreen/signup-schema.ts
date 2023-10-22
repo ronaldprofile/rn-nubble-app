@@ -1,21 +1,22 @@
-import { z } from "zod";
+import { z } from 'zod'
+import { stringUtils } from '@utils'
 
-const userNameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/gim;
+const userNameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/gim
 
 export const signUpSchema = z.object({
-  username: z.string().regex(userNameRegex, "username inválido").toLowerCase(),
-  fullName: z
+  username: z.string().regex(userNameRegex, 'username inválido').toLowerCase(),
+  firstName: z
     .string()
-    .min(5, "nome muito curto")
-    .max(50, "nome muito longo")
-    .transform(value => {
-      return value
-        .split(" ")
-        .map(word => word.charAt(0).toLocaleUpperCase() + word.slice(1))
-        .join(" ");
-    }),
-  email: z.string().email("email inválido"),
-  password: z.string().min(8, "senha deve ter no mínimo 8 catacteres")
-});
+    .min(5, 'nome muito curto')
+    .max(50, 'nome muito longo')
+    .transform(stringUtils.capitalizeFirstLetter),
+  lastName: z
+    .string()
+    .min(5, 'nome muito curto')
+    .max(50, 'nome muito longo')
+    .transform(stringUtils.capitalizeFirstLetter),
+  email: z.string().email('email inválido'),
+  password: z.string().min(8, 'senha deve ter no mínimo 8 catacteres')
+})
 
-export type SignUpSchema = z.infer<typeof signUpSchema>;
+export type SignUpSchema = z.infer<typeof signUpSchema>

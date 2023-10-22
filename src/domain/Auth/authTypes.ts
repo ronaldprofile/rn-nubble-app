@@ -6,6 +6,14 @@ export interface AuthCredentials {
   user: User
 }
 
+export interface SignUpData {
+  firstName: string
+  lastName: string
+  username: string
+  email: string
+  password: string
+}
+
 // Api
 export interface AuthCredentialsApi {
   auth: {
@@ -14,4 +22,12 @@ export interface AuthCredentialsApi {
   }
 
   user: UserApi
+}
+
+export interface SignUpDataApi {
+  firstName: string
+  lastName: string
+  username: string
+  email: string
+  password: string
 }
