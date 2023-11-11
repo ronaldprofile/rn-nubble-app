@@ -1,10 +1,11 @@
-import { Controller, UseControllerProps, FieldValues } from "react-hook-form";
-import { TextInput, TextInputProps } from "@components";
+import { Controller, UseControllerProps, FieldValues } from 'react-hook-form'
+import { TextInput, TextInputProps } from '@components'
 
 export function FormTextInput<FormType extends FieldValues>({
   control,
   rules,
   name,
+  errorMessage,
   ...textInputProps
 }: TextInputProps & UseControllerProps<FormType>) {
   return (
@@ -16,10 +17,10 @@ export function FormTextInput<FormType extends FieldValues>({
         <TextInput
           value={field.value}
           onChangeText={field.onChange}
-          errorMessage={fieldState.error?.message}
+          errorMessage={fieldState.error?.message || errorMessage}
           {...textInputProps}
         />
       )}
     />
-  );
+  )
 }
