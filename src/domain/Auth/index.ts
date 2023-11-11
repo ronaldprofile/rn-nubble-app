@@ -1,5 +1,3 @@
-export * from './hooks/useUser'
-
 export * from './authServices'
 export * from './authTypes'
 
