@@ -6,12 +6,29 @@ import {
   forgotPasswordSchema,
   ForgotPasswordSchema
 } from './forgot-password-schema'
-import { AuthScreenProps } from '@routes'
+import { AuthScreenProps, AuthStackParamList } from '@routes'
+import { useAuthRequestNewPassword } from '@domain'
+import { useToastService } from '@services'
+
+const resetParam: AuthStackParamList['SuccessScreen'] = {
+  title: 'Enviamos as instruções para seu e-mail',
+  description: 'Clique no link enviado no seu e-mail para recuperar sua senha',
+  icon: {
+    name: 'messageRound',
+    color: 'primary'
+  }
+}
 
 export function ForgotPasswordScreen(
   props: AuthScreenProps<'ForgotPasswordScreen'>
 ) {
   const { reset } = useResetNavigationSuccess()
+  const { showToast } = useToastService()
+
+  const { requestNewPassword, isLoading } = useAuthRequestNewPassword({
+    onSuccess: () => reset(resetParam),
+    onError: message => showToast({ message, type: 'error' })
+  })
 
   const { control, handleSubmit } = useForm({
     resolver: zodResolver(forgotPasswordSchema),
@@ -21,16 +38,8 @@ export function ForgotPasswordScreen(
     }
   })
 
-  function handleSubmitForm(data: ForgotPasswordSchema) {
-    reset({
-      title: 'Enviamos as instruções para seu e-mail',
-      description:
-        'Clique no link enviado no seu e-mail para recuperar sua senha',
-      icon: {
-        name: 'messageRound',
-        color: 'primary'
-      }
-    })
+  function handleSubmitForm(formValues: ForgotPasswordSchema) {
+    requestNewPassword(formValues.email)
   }
 
   return (
@@ -52,6 +61,7 @@ export function ForgotPasswordScreen(
       />
 
       <Button
+        loading={isLoading}
         title='Recuperar senha'
         mt='s48'
         onPress={handleSubmit(handleSubmitForm)}
