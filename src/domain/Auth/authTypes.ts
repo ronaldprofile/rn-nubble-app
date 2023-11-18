@@ -4,6 +4,8 @@ import { User, UserApi } from '../User/userTypes'
 export interface AuthCredentials {
   token: string
   user: User
+  refreshToken: string
+  tokenExperiesAt: string
 }
 
 export interface SignUpData {
@@ -19,6 +21,8 @@ export interface AuthCredentialsApi {
   auth: {
     type: string
     token: string
+    refreshToken: string
+    experies_at: string
   }
 
   user: UserApi

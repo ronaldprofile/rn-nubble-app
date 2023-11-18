@@ -6,7 +6,9 @@ function toAuthCredentials(
 ): AuthCredentials {
   return {
     token: authCredentialsApi.auth.token,
-    user: userAdapter.toUser(authCredentialsApi.user)
+    user: userAdapter.toUser(authCredentialsApi.user),
+    refreshToken: authCredentialsApi.auth.refreshToken,
+    tokenExperiesAt: authCredentialsApi.auth.experies_at
   }
 }
 
