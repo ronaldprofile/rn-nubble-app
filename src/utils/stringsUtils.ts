@@ -3,6 +3,7 @@ function capitalizeFirstLetter(value: string) {
     .split(' ')
     .map(word => word.charAt(0).toLocaleUpperCase() + word.slice(1))
     .join(' ')
+    .trim()
 }
 
 export const stringUtils = { capitalizeFirstLetter }
