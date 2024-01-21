@@ -3,6 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "test-utils": [
+        "./src/test/test-utils"
+      ],
       "@components": [
         "./src/components"
       ],
