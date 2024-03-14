@@ -13,7 +13,7 @@ interface Variables {
 export function useAuthSignIn(options?: MutationsOptions<AuthCredentials>) {
   const { saveCredentials } = useAuthCrendentials()
 
-  const { mutate, isLoading, isError } = useMutation<
+  const { mutate, isLoading, isError, isSuccess } = useMutation<
     AuthCredentials,
     Error,
     Variables
@@ -27,6 +27,10 @@ export function useAuthSignIn(options?: MutationsOptions<AuthCredentials>) {
     },
 
     onSuccess: authCredentials => {
+      if (options?.onSuccess) {
+        options.onSuccess(authCredentials)
+      }
+
       saveCredentials(authCredentials)
     }
   })
@@ -34,6 +38,7 @@ export function useAuthSignIn(options?: MutationsOptions<AuthCredentials>) {
   return {
     signIn: (variables: Variables) => mutate(variables),
     isLoading,
-    isError
+    isError,
+    isSuccess
   }
 }
