@@ -2,8 +2,7 @@ import { PropsWithChildren, createContext, useEffect, useState } from 'react'
 import { AuthCredentialsService } from '../authCredentialsTypes'
 import { AuthCredentials, authService } from '@domain'
 import { authCredentialsStorage } from '../authCredentialsStorage'
-import { api, registerInterceptor } from '@api'
-import { authApi } from '../../../domain/Auth/authApi'
+import { registerInterceptor } from '@api'
 
 export const AuthCredentialsContext = createContext<AuthCredentialsService>(
   {} as AuthCredentialsService
@@ -60,9 +59,17 @@ export function AuthCredentialsProvider({ children }: PropsWithChildren) {
     setAuthCredentials(null)
   }
 
+  const userId = authCredentials?.user.id || null
+
   return (
     <AuthCredentialsContext.Provider
-      value={{ authCredentials, isLoading, saveCredentials, removeCredentials }}
+      value={{
+        authCredentials,
+        userId,
+        isLoading,
+        saveCredentials,
+        removeCredentials
+      }}
     >
       {children}
     </AuthCredentialsContext.Provider>

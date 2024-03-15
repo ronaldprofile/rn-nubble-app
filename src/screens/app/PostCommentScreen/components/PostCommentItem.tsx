@@ -6,7 +6,7 @@ import { Alert, Pressable } from 'react-native'
 interface PostCommentItemProps {
   postId: number
   postComment: PostComment
-  userId: number
+  userId: number | null
   postAuthorId: number
 }
 
