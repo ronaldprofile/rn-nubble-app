@@ -1,3 +1,5 @@
+import { UserApi } from '../User/userTypes'
+
 // Api
 export interface PostCommentApi {
   id: number
@@ -7,35 +9,8 @@ export interface PostCommentApi {
   created_at: string
   updated_at: string
   user: UserApi
-  post: PostApi
-  meta: Meta
+  meta: any
 }
-
-interface UserApi {
-  id: number
-  first_name: string
-  last_name: string
-  username: string
-  email: string
-  profile_url: string
-  is_online: boolean
-  full_name: string
-}
-
-interface PostApi {
-  id: number
-  text: string
-  user_id: number
-  image_url: string
-  is_fixed: boolean
-  is_activated: boolean
-  created_at: string
-  updated_at: string
-  status: string
-  meta: Meta
-}
-
-interface Meta {}
 
 // UI
 

@@ -14,6 +14,8 @@ import {
   QueryClientConfig,
   QueryClientProvider
 } from '@tanstack/react-query'
+import { AuthCredentialsProvider } from '@services'
+import { Toast } from '@components'
 
 const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
@@ -49,11 +51,14 @@ export function wrapScreenProviders() {
   const queryClient = new QueryClient(queryClientConfig)
 
   return ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <NavigationContainer>{children}</NavigationContainer>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <AuthCredentialsProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <NavigationContainer>{children}</NavigationContainer>
+          <Toast />
+        </ThemeProvider>
+      </QueryClientProvider>
+    </AuthCredentialsProvider>
   )
 }
 

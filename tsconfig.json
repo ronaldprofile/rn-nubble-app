@@ -41,6 +41,9 @@
       ],
       "@services": [
         "./src/services"
+      ],
+      "@test": [
+        "./src/test"
       ]
     }
   }

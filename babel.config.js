@@ -17,7 +17,8 @@ module.exports = {
           '@types': './src/types',
           '@utils': './src/utils',
           '@appInfra': './src/appInfra',
-          '@services': './src/services'
+          '@services': './src/services',
+          '@test': './src/test'
         }
       }
     ]
