@@ -5,12 +5,12 @@ import { theme } from './src/theme'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Router } from './src/routes/Routes'
 import { Toast } from '@components'
+import { ToastProvider } from '@services'
 import {
-  AuthCredentialsProvider,
-  MMKVStorage,
-  ToastProvider,
-  initializeImplementationStorage
-} from '@services'
+  initializeImplementationStorage,
+  MMKVStorage
+} from './src/services/storage'
+import { AuthCredentialsProvider } from './src/services/authCredentials/Providers/AuthCredentialsProvider'
 
 initializeImplementationStorage(MMKVStorage)
 

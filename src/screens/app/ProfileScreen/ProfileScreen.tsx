@@ -36,7 +36,7 @@ export function ProfileScreen({ route }: AppScreenProps<'ProfileScreen'>) {
             />
 
             <Text preset='paragraphMedium' bold>
-              {user.firstName}
+              {user.fullName}
             </Text>
 
             <Text>@{user.username}</Text>

@@ -1,10 +1,9 @@
 import { setupServer } from 'msw/node'
-import {
-  postCommentHandlers,
-  resetInMemoryResponse
-} from './PostComment/postCommentHandlers'
+import { postCommentHandlers } from './PostComment/postCommentHandlers'
+import { userHandlers } from './User/userHandlers'
 
-export const server = setupServer(...postCommentHandlers)
+export const server = setupServer(...postCommentHandlers, ...userHandlers)
 
 export { mockedData as mockedPostComment } from './PostComment/mocks'
 export { resetInMemoryResponse } from './PostComment/postCommentHandlers'
+export { userMocked } from './User/mocks'

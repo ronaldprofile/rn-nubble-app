@@ -1,6 +1,7 @@
-export {}
-
 //@ts-ignore
+import { initializeImplementationStorage } from '../services/storage'
+import { inMemoryStorage } from '../services/storage/implementations/jest/inMemoryStorage'
+
 import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock'
 jest.mock('react-native-safe-area-context', () => ({
   ...mockSafeAreaContext,
@@ -17,3 +18,5 @@ jest.mock('@react-navigation/native', () => {
     })
   }
 })
+
+initializeImplementationStorage(inMemoryStorage)

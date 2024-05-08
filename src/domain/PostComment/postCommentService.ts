@@ -15,12 +15,10 @@ async function getList(
     per_page: PER_PAGE
   })
 
-  return {
-    meta: apiAdapter.toMetaDataPage(postCommentPageApi.meta),
-    data: postCommentPageApi.data.map(postCommentPage =>
-      postCommentAdapter.toPostComment(postCommentPage)
-    )
-  }
+  return apiAdapter.toPageModel(
+    postCommentPageApi,
+    postCommentAdapter.toPostComment
+  )
 }
 
 async function create(post_id: number, message: string): Promise<PostComment> {

@@ -24,6 +24,7 @@ afterEach(() => {
 afterAll(() => {
   server.close()
   jest.useRealTimers()
+  jest.resetAllMocks()
 })
 
 describe('integration: PostCommentScreen', () => {

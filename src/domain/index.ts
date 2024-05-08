@@ -5,6 +5,7 @@ export * from './Auth'
 export * from './Post/postTypes'
 export * from './Post/postService'
 export * from './Post/useCases/usePostList'
+export { USER_PATH } from './User/userApi'
 
 // post comment
 export { POST_COMMENT_PATH } from './PostComment/postCommentApi'
@@ -20,3 +21,4 @@ export * from './User/userService'
 export * from './User/userAdapter'
 
 export * from './User/useCases/useUserGetById'
+export * from './User/useCases/useUserSearch'

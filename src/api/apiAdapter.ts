@@ -1,5 +1,5 @@
-import { MetaDataPage } from '@types'
-import { MetaDataPageApi } from './apiTypes'
+import { MetaDataPage, Page } from '@types'
+import { MetaDataPageApi, PageDataApi } from './apiTypes'
 
 function toMetaDataPage(meta: MetaDataPageApi): MetaDataPage {
   return {
@@ -13,6 +13,17 @@ function toMetaDataPage(meta: MetaDataPageApi): MetaDataPage {
   }
 }
 
+function toPageModel<ApiType, ModelType>(
+  page: PageDataApi<ApiType>,
+  adapterToModel: (api: ApiType) => ModelType
+): Page<ModelType> {
+  return {
+    meta: toMetaDataPage(page.meta),
+    data: page.data.map(adapterToModel)
+  }
+}
+
 export const apiAdapter = {
-  toMetaDataPage
+  toMetaDataPage,
+  toPageModel
 }

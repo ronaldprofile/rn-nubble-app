@@ -13,6 +13,7 @@ export interface ScreenProps extends BoxProps {
   withGoBack?: boolean
   scrollable?: boolean
   title?: string
+  HeaderComponent?: React.ReactNode
 }
 
 export function Screen({
@@ -21,6 +22,7 @@ export function Screen({
   scrollable = false,
   title,
   style,
+  HeaderComponent,
   ...boxProps
 }: ScreenProps) {
   const { top, bottom } = useAppSafeArea()
@@ -30,12 +32,7 @@ export function Screen({
   const keyboardBehavior = Platform.OS === 'ios' ? 'padding' : undefined
 
   return (
-    <KeyboardAvoidingView
-      style={{
-        flex: 1
-      }}
-      behavior={keyboardBehavior}
-    >
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={keyboardBehavior}>
       <Container backgroundColor={colors.background}>
         <Box
           px='s24'
@@ -48,7 +45,11 @@ export function Screen({
           ]}
           {...boxProps}
         >
-          <ScreenHeader withGoBack={withGoBack} title={title} />
+          <ScreenHeader
+            HeaderComponent={HeaderComponent}
+            withGoBack={withGoBack}
+            title={title}
+          />
 
           {children}
         </Box>
