@@ -1,18 +1,20 @@
 import { useNavigation } from '@react-navigation/native'
-import { Box, Icon, Text, TouchableOpacityBox } from '@components'
+import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from '@components'
 import { ScreenProps } from '../Screen'
 
 type ScreenHeaderProps = Pick<
   ScreenProps,
   'withGoBack' | 'title' | 'HeaderComponent'
->
+> &
+  BoxProps
 
 const ICON_SIZE = 20
 
 export function ScreenHeader({
   title,
   withGoBack,
-  HeaderComponent
+  HeaderComponent,
+  ...boxStyles
 }: ScreenHeaderProps) {
   const navigation = useNavigation()
 
@@ -26,6 +28,7 @@ export function ScreenHeader({
       flexDirection='row'
       alignItems='center'
       justifyContent='space-between'
+      {...boxStyles}
     >
       {withGoBack && (
         <TouchableOpacityBox

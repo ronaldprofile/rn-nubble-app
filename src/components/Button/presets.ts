@@ -1,9 +1,9 @@
-import { ButtonPreset, TouchableOpacityBoxProps } from '@components'
+import { ButtonPreset, TextProps, TouchableOpacityBoxProps } from '@components'
 import { ThemeColors } from '../../theme'
 
 interface ButtonUI {
   container: TouchableOpacityBoxProps
-  content: ThemeColors
+  content: { color: ThemeColors; textProps?: TextProps }
 }
 
 export const buttonPresets: Record<
@@ -18,14 +18,14 @@ export const buttonPresets: Record<
       container: {
         backgroundColor: 'primary'
       },
-      content: 'primaryContrast'
+      content: { color: 'primaryContrast' }
     },
 
     disabled: {
       container: {
         backgroundColor: 'gray4'
       },
-      content: 'gray2'
+      content: { color: 'gray2' }
     }
   },
 
@@ -35,7 +35,7 @@ export const buttonPresets: Record<
         borderWidth: 2,
         borderColor: 'primary'
       },
-      content: 'primary'
+      content: { color: 'primary' }
     },
 
     disabled: {
@@ -43,7 +43,32 @@ export const buttonPresets: Record<
         borderWidth: 2,
         borderColor: 'gray4'
       },
-      content: 'gray2'
+      content: { color: 'gray2' }
+    }
+  },
+
+  ghost: {
+    default: {
+      container: {
+        backgroundColor: 'white70',
+        height: 40
+      },
+      content: {
+        color: 'grayBlack',
+        textProps: {
+          preset: 'paragraphSmall',
+          bold: false
+        }
+      }
+    },
+    disabled: {
+      container: {
+        backgroundColor: 'grayWhite',
+        height: 40
+      },
+      content: {
+        color: 'grayBlack'
+      }
     }
   }
 }

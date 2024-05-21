@@ -12,3 +12,4 @@ export * from './storage/implementations/MMKVStorage'
 export * from './storage/implementations/asyncStorage'
 
 export * from './searchHistory'
+export * from './cameraRoll'

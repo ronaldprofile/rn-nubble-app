@@ -7,7 +7,7 @@ import {
 } from '@components'
 
 import { buttonPresets } from './presets'
-export type ButtonPreset = 'primary' | 'outline'
+export type ButtonPreset = 'primary' | 'outline' | 'ghost'
 
 export interface ButtonProps extends TouchableOpacityBoxProps {
   title: string
@@ -38,9 +38,14 @@ export function Button({
       {...rest}
     >
       {loading ? (
-        <ActivityIndicator color={buttonPreset.content} />
+        <ActivityIndicator color={buttonPreset.content.color} />
       ) : (
-        <Text preset='paragraphMedium' bold color={buttonPreset.content}>
+        <Text
+          preset='paragraphMedium'
+          bold
+          color={buttonPreset.content.color}
+          {...buttonPreset.content.textProps}
+        >
           {title}
         </Text>
       )}

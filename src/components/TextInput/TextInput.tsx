@@ -14,6 +14,7 @@ export interface TextInputProps extends RNTextInputProps {
   RightComponent?: React.ReactElement
   LeftComponent?: React.ReactElement
   boxProps?: BoxProps
+  containerProps?: BoxProps
 }
 
 export function TextInput({
@@ -22,6 +23,7 @@ export function TextInput({
   RightComponent,
   LeftComponent,
   boxProps,
+  containerProps,
   ...rest
 }: TextInputProps) {
   const { colors } = useAppTheme()
@@ -63,7 +65,7 @@ export function TextInput({
           </Text>
         )}
 
-        <Box {...$inputContainerStyle}>
+        <Box {...$inputContainerStyle} {...containerProps}>
           {LeftComponent && (
             <Box mr='s16' justifyContent='center'>
               {LeftComponent}
