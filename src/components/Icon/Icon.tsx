@@ -31,6 +31,7 @@ import { ThemeColors } from '@theme'
 import { CheckRoundIcon } from '../../assets/icons/CheckRoundIcon'
 import { MessageRoundIcon } from '../../assets/icons/MessageRoundIcon'
 import { ErrorRoundIcon } from '../../assets/icons/ErrorRoundIcon'
+import { CameraClick } from '../../assets/icons/CameraClick'
 
 export interface IconBaseProps {
   size?: number
@@ -72,6 +73,7 @@ const iconRegistry = {
   bookmark: BookmarkIcon,
   bookmarkFill: BookmarkFillIcon,
   camera: CameraIcon,
+  cameraClick: CameraClick,
   chat: ChatIcon,
   chatOn: ChatOnIcon,
   check: CheckIcon,

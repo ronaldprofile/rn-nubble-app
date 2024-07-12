@@ -13,3 +13,4 @@ export * from './storage/implementations/asyncStorage'
 
 export * from './searchHistory'
 export * from './cameraRoll'
+export * from './permission'

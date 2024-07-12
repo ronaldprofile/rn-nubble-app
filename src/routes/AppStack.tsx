@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import {
+  CameraScreen,
   PostCommentScreen,
   ProfileScreen,
   PublishPostScreen,
@@ -26,6 +27,7 @@ export type AppStackParamList = {
   }
 
   SearchScreen: undefined
+  CameraScreen: undefined
 }
 
 const Stack = createNativeStackNavigator<AppStackParamList>()
@@ -51,6 +53,7 @@ export function AppStack({
       <Stack.Screen name='ProfileScreen' component={ProfileScreen} />
       <Stack.Screen name='SearchScreen' component={SearchScreen} />
       <Stack.Screen name='PublishPostScreen' component={PublishPostScreen} />
+      <Stack.Screen name='CameraScreen' component={CameraScreen} />
     </Stack.Navigator>
   )
 }

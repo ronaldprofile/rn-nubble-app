@@ -44,6 +44,9 @@
       ],
       "@test": [
         "./src/test"
+      ],
+      "@assets": [
+        "./src/assets"
       ]
     }
   }
